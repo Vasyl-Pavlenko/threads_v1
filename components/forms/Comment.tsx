@@ -26,7 +26,11 @@ interface Props {
   currentUserId: string;
 }
 
-function Comment({ threadId, currentUserImg, currentUserId }: Props) {
+function Comment({
+  threadId,
+  currentUserImg,
+  currentUserId
+}: Props) {
   const pathname = usePathname();
 
   const form = useForm<z.infer<typeof CommentValidation>>({
@@ -49,7 +53,10 @@ function Comment({ threadId, currentUserImg, currentUserId }: Props) {
 
   return (
     <Form {...form}>
-      <form className='comment-form' onSubmit={form.handleSubmit(onSubmit)}>
+      <form
+        className='comment-form'
+        onSubmit={form.handleSubmit(onSubmit)}
+      >
         <FormField
           control={form.control}
           name='thread'
@@ -64,6 +71,7 @@ function Comment({ threadId, currentUserImg, currentUserId }: Props) {
                   className='rounded-full object-cover'
                 />
               </FormLabel>
+
               <FormControl className='border-none bg-transparent'>
                 <Input
                   type='text'
@@ -76,7 +84,10 @@ function Comment({ threadId, currentUserImg, currentUserId }: Props) {
           )}
         />
 
-        <Button type='submit' className='comment-form_btn'>
+        <Button
+          type='submit'
+          className='comment-form_btn'
+        >
           Reply
         </Button>
       </form>

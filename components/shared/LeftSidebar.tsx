@@ -21,7 +21,9 @@ const LeftSidebar = () => {
             (pathname.includes(link.route) && link.route.length > 1) ||
             pathname === link.route;
 
-          if (link.route === "/profile") link.route = `${link.route}/${userId}`;
+          if (link.route === "/profile") {
+            link.route = `${link.route}/${userId}`
+          };
 
           return (
             <Link
@@ -36,7 +38,9 @@ const LeftSidebar = () => {
                 height={24}
               />
 
-              <p className='text-light-1 max-lg:hidden'>{link.label}</p>
+              <p className='text-light-1 max-lg:hidden'>
+                {link.label}
+              </p>
             </Link>
           );
         })}
@@ -53,7 +57,9 @@ const LeftSidebar = () => {
                 height={24}
               />
 
-              <p className='text-light-2 max-lg:hidden'>Logout</p>
+              <p className='text-light-2 max-lg:hidden'>
+                Logout
+              </p>
             </div>
           </SignOutButton>
         </SignedIn>

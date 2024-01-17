@@ -23,7 +23,9 @@ function DeleteThread({
   const pathname = usePathname();
   const router = useRouter();
 
-  if (currentUserId !== authorId || pathname === "/") return null;
+  if (currentUserId !== authorId || pathname === "/") {
+    return null
+  };
 
   return (
     <Image
@@ -34,6 +36,7 @@ function DeleteThread({
       className='cursor-pointer object-contain'
       onClick={async () => {
         await deleteThread(JSON.parse(threadId), pathname);
+        
         if (!parentId || !isComment) {
           router.push("/");
         }

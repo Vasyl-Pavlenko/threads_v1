@@ -58,6 +58,7 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
     const blob = values.profile_photo;
 
     const hasImageChanged = isBase64Image(blob);
+
     if (hasImageChanged) {
       const imgRes = await startUpload(files);
 
@@ -92,12 +93,16 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
 
     if (e.target.files && e.target.files.length > 0) {
       const file = e.target.files[0];
+      
       setFiles(Array.from(e.target.files));
 
-      if (!file.type.includes("image")) return;
+      if (!file.type.includes("image")) {
+        return
+      };
 
       fileReader.onload = async (event) => {
         const imageDataUrl = event.target?.result?.toString() || "";
+
         fieldChange(imageDataUrl);
       };
 
@@ -136,6 +141,7 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
                   />
                 )}
               </FormLabel>
+
               <FormControl className='flex-1 text-base-semibold text-gray-200'>
                 <Input
                   type='file'
@@ -157,6 +163,7 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
               <FormLabel className='text-base-semibold text-light-2'>
                 Name
               </FormLabel>
+
               <FormControl>
                 <Input
                   type='text'
@@ -164,6 +171,7 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
                   {...field}
                 />
               </FormControl>
+
               <FormMessage />
             </FormItem>
           )}
@@ -177,6 +185,7 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
               <FormLabel className='text-base-semibold text-light-2'>
                 Username
               </FormLabel>
+
               <FormControl>
                 <Input
                   type='text'
@@ -184,6 +193,7 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
                   {...field}
                 />
               </FormControl>
+
               <FormMessage />
             </FormItem>
           )}
@@ -197,6 +207,7 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
               <FormLabel className='text-base-semibold text-light-2'>
                 Bio
               </FormLabel>
+
               <FormControl>
                 <Textarea
                   rows={10}
@@ -204,12 +215,16 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
                   {...field}
                 />
               </FormControl>
+
               <FormMessage />
             </FormItem>
           )}
         />
 
-        <Button type='submit' className='bg-primary-500'>
+        <Button
+          type='submit'
+          className='bg-primary-500'
+        >
           {btnTitle}
         </Button>
       </form>
